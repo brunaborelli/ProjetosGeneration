@@ -10,20 +10,57 @@
 
 fun main() {
 
-    //print()
+    print("Digite seu nome: ")
+    val nome = readLine()!!
+
+    print("Digite seu endereço: ")
+    val endereco = readLine()!!
+
+    print("Digite seu telefone: ")
+    val telefone = readLine()!!
+
     try {
-        val josivan = Cliente("Josivan", "Tal rua", "(11)99999-9999")
-    } catch (e: Exception) {
+        // instanciando objeto cliente
+        val cliente = Cliente(nome, endereco, telefone)
+
+        while (true) {
+            println("\n --- MENU --- \n")
+            println("1 - Adicionar itens ao carrinho")
+            println("2 - Remover itens do carrinho")
+            println("3 - Listar os itens do carrinho")
+            println("Digite qualquer outro valor para sair")
+
+            var opc = 0
+
+            while (true) {
+                print("\nDigite a opção desejada: ")
+
+                try {
+                    opc = readLine()!!.toInt()
+                    break
+                } catch (e: Exception) {
+                    println("Valor inválido")
+                }
+            }
+
+            when (opc) {
+                1 -> {
+                    print("Digite o item que deseja adicionar: ")
+                    var item = readLine()!!
+                    cliente.adicionar(item)
+                }
+                2 -> {
+                    print("Digite o item a ser removido: ")
+                    val item = readLine()!!
+                    cliente.remover(item)
+                }
+                3 -> cliente.listar()
+
+                else -> break
+            }
+        }
+
+    }catch(e: Exception) {
         println(e.message)
-    }
-
-    while (true) {
-        println("1 - Adicionar itens ao carrinho")
-        println("2 - Remover itens do carrinho")
-        println("3 - Listar itens do carrinho")
-        println("Digite qualquer outro valor para sair")
-
-        println("\n Digite a opção desejada: ")
-        //val opc =
     }
 }

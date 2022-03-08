@@ -1,4 +1,4 @@
-class Cliente(val nome: String) {
+class Cliente(private var nome: String) {
     private var telefone = ""
     private var endereco = ""
 
@@ -18,7 +18,13 @@ class Cliente(val nome: String) {
         }
     }
 
-    fun adicionar() {
+    fun adicionar(item: String) {
+        if (item.isEmpty()) {
+            println("Valor inválido")
+        } else {
+            listaDeCompras.add(item)
+            println("Item $item adicionado com sucesso")
+        }
 
         /* print("Digite um item para ser adicionado à lista: ")
         val item = readLine()!!
@@ -36,7 +42,18 @@ class Cliente(val nome: String) {
 
     fun remover(item: String) {
         if (item.isEmpty()) {
+            println("Valor inválido")
+        } else if (listaDeCompras.contains(item)){
+            listaDeCompras.remove(item)
+            println("O item $item foi removido com sucesso")
+        } else {
+            println("O item $item não existe na lista")
+        }
+    }
 
+    fun listar() {
+        listaDeCompras.forEach{
+            println(it)
         }
     }
 }
